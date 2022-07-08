@@ -1,6 +1,11 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 
-export const linkStyles = css`
+export const PageContainer = styled.div`
+  width: min(1200px, 96%);
+  margin: 50px auto;
+`;
+
+export const buttonLinkReset = css`
   appearance: none;
   text-decoration: none;
   border: none;
@@ -8,6 +13,11 @@ export const linkStyles = css`
   cursor: pointer;
 
   font-size: 1rem;
+`;
+
+export const linkStyles = css`
+  ${buttonLinkReset}
+
   font-weight: 500;
   color: var(--primary);
 
@@ -69,4 +79,19 @@ export const button = css`
       };
     }
   }}
+`;
+
+export const titleUnderline = css`
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: min(50%, 200px);
+    height: 5px;
+    background-image: linear-gradient(to right, var(--primary), transparent);
+  }
 `;
