@@ -17,9 +17,6 @@ export const Section = styled.section`
   }
 
   & > div {
-    display: grid;
-    place-items: center flex-start;
-
     &:not(:last-child) {
       flex: 1;
       position: relative;
@@ -43,12 +40,32 @@ export const Section = styled.section`
       }
     }
 
-    @media screen and (${responsiveWidth}) {
-      &:last-child {
-        width: 100%;
+    &:last-child {
+      display: grid;
+      place-items: center;
+
+      flex: 1;
+
+      @media screen and (${responsiveWidth}) {
+        flex: unset;
+        place-items: unset;
       }
     }
   }
+`;
+
+export const Field = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  row-gap: 5px;
+  width: 100%;
+`;
+
+export const Label = styled.span`
+  font-size: 0.9rem;
+  color: var(--gray);
+  text-shadow: 0 0 0 var(--gray), 0 0 0 var(--gray);
 `;
 
 export const Button = styled.a`

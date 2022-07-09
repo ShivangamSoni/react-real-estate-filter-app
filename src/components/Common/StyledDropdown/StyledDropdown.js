@@ -1,17 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-import {
-  Container,
-  Label,
-  Options,
-  Select,
-  Selected,
-} from "./styled.component";
+import { Options, Select, Selected } from "./styled.component";
 
 import Option from "./Option/Option";
-import { useEffect } from "react";
 
 const StyledDropdown = ({ label, value, onChange, options }) => {
   const [visible, setVisible] = useState(false);
@@ -39,31 +32,28 @@ const StyledDropdown = ({ label, value, onChange, options }) => {
   };
 
   return (
-    <Container>
-      <Label>{label}</Label>
-      <Select>
-        <Selected onClick={toggleDropDown}>
-          {options.filter((o) => o.value === value)[0].label}
-          <button>
-            <MdKeyboardArrowDown />
-          </button>
-        </Selected>
+    <Select>
+      <Selected onClick={toggleDropDown}>
+        {options.filter((o) => o.value === value)[0].label}
+        <button>
+          <MdKeyboardArrowDown />
+        </button>
+      </Selected>
 
-        {visible && (
-          <Options>
-            {options.map(({ label, disabled }, idx) => (
-              <Option
-                key={idx}
-                idx={idx}
-                label={label}
-                disabled={disabled}
-                handleSelect={handleSelect}
-              />
-            ))}
-          </Options>
-        )}
-      </Select>
-    </Container>
+      {visible && (
+        <Options>
+          {options.map(({ label, disabled }, idx) => (
+            <Option
+              key={idx}
+              idx={idx}
+              label={label}
+              disabled={disabled}
+              handleSelect={handleSelect}
+            />
+          ))}
+        </Options>
+      )}
+    </Select>
   );
 };
 

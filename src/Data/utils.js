@@ -1,4 +1,5 @@
 import DATA from "./data.json";
+import filterFalsyValues from "../utils/filterFalsyValues";
 
 export const fetchData = (filters) => {
   const truthyFilters = filterFalsyValues(filters);
@@ -7,10 +8,10 @@ export const fetchData = (filters) => {
     return DATA;
   }
 
-  if (filters.name != null) {
-    return filterByName(filters.name);
+  if (truthyFilters.name != null) {
+    return filterByName(truthyFilters.name);
   } else {
-    return filterData(filters);
+    return filterData(truthyFilters);
   }
 };
 
@@ -34,20 +35,8 @@ const filterData = (filters) => {
   }
 
   if (property) {
-    filteredData = filteredData.filter(
-      (property) => property.type === property,
-    );
+    filteredData = filteredData.filter(({ type }) => type === property);
   }
 
   return filteredData;
-};
-
-const filterFalsyValues = (object) => {
-  return Object.keys(object).reduce((acc, key) => {
-    if (object[key]) {
-      acc[key] = object[key];
-    }
-
-    return acc;
-  }, {});
 };

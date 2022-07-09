@@ -2,80 +2,35 @@ import { useState } from "react";
 
 import { useSearchParams } from "react-router-dom";
 
-import { Button, Section } from "./styled.component";
+import DatePicker from "react-date-picker";
+
+import { Button, Field, Label, Section } from "./styled.component";
 
 import StyledDropdown from "../../Common/StyledDropdown/StyledDropdown";
-import currencyFormatter from "../../../utils/currencyFormatter";
 
-const dummyOptions = [
-  { label: "Select", value: "" },
-  { label: "Test 1", value: "text-1" },
-  { label: "Test 2", value: "text-2" },
-  { label: "Test 3", value: "text-3" },
-  { label: "Test 4", value: "text-4" },
-  { label: "Test 5", value: "text-5" },
-];
+import filterFalsyValues from "../../../utils/filterFalsyValues";
 
-const locationOptions = [
-  { label: "Select", value: "" },
-  { label: "Florida, USA", value: "Florida, USA" },
-  { label: "Texas, USA", value: "Texas, USA" },
-  { label: "Indiana, USA", value: "Indiana, USA" },
-];
-
-const priceOptions = [
-  { label: "Select", value: "" },
-  { label: currencyFormatter.format(2095), value: "2095" },
-  { label: currencyFormatter.format(2700), value: "2700" },
-  { label: currencyFormatter.format(4550), value: "4550" },
-];
-
-const propertyTypeOptions = [
-  { label: "Select", value: "" },
-  { label: "Houses", value: "houses" },
-  { label: "Villas", value: "villas" },
-  { label: "Mansions", value: "mansions" },
-];
-
-const correctFilters = (filters) => {
-  if (
-    locationOptions.filter((location) => location.value === filters.location)
-      .length === 0
-  ) {
-    filters.location = "";
-  }
-
-  if (
-    priceOptions.filter((price) => price.value === filters.price).length === 0
-  ) {
-    filters.price = "";
-  }
-
-  if (
-    propertyTypeOptions.filter(
-      (property) => property.value === filters.property,
-    ).length === 0
-  ) {
-    filters.property = "";
-  }
-};
+import {
+  correctFilters,
+  locationOptions,
+  priceOptions,
+  propertyTypeOptions,
+} from "./FilterData";
 
 const FilterBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  let filters = {
+  let filters = correctFilters({
     location: searchParams.get("location"),
     when: searchParams.get("when"),
     price: searchParams.get("price"),
     property: searchParams.get("propertyType"),
-  };
-
-  correctFilters(filters);
+  });
 
   const [selectedLocation, setSelectedLocation] = useState(
     filters["location"] || "",
   );
-  const [selectedWhen, setSelectedWhen] = useState(filters["when"] || "");
+  const [selectedWhen, setSelectedWhen] = useState("");
   const [selectedPrice, setSelectedPrice] = useState(filters["price"] || "");
   const [selectedPropertyType, setSelectedPropertyType] = useState(
     filters["property"] || "",
@@ -84,9 +39,9 @@ const FilterBar = () => {
   const handleLocationChange = (idx) => {
     setSelectedLocation(locationOptions[idx].value);
   };
-  // const handleWhenChange = (idx) => {
-  //   setSelectedWhen(dummyOptions[idx].value);
-  // };
+  const handleWhenChange = (date) => {
+    setSelectedWhen(date);
+  };
   const handlePriceChange = (idx) => {
     setSelectedPrice(priceOptions[idx].value);
   };
@@ -95,57 +50,62 @@ const FilterBar = () => {
   };
 
   const handleSearch = () => {
-    const filters = {
+    const filters = filterFalsyValues({
       location: selectedLocation,
-      when: selectedWhen,
+      when: selectedWhen
+        ? `${selectedWhen.getFullYear()}-${
+            selectedWhen.getMonth() + 1
+          }-${selectedWhen.getDate()}`
+        : "",
       price: selectedPrice,
       property: selectedPropertyType,
-    };
+    });
 
-    setSearchParams(filters);
+    if (Object.keys(filters).length === 0) {
+      setSearchParams();
+    } else {
+      setSearchParams(filters);
+    }
   };
 
   return (
     <Section>
-      <div>
+      <Field>
+        <Label>Location</Label>
         <StyledDropdown
-          label={"Location"}
           value={selectedLocation}
           onChange={handleLocationChange}
           options={locationOptions}
         />
-      </div>
+      </Field>
 
-      {/* <div>
-        <StyledDropdown
-          label={"When"}
-          value={selectedWhen}
-          onChange={handleWhenChange}
-          options={dummyOptions}
-        />
-      </div> */}
+      <Field>
+        <Label>When</Label>
+        <DatePicker value={selectedWhen} onChange={handleWhenChange} />
+      </Field>
 
-      <div>
+      <Field>
+        <Label>Price</Label>
         <StyledDropdown
-          label={"Price"}
           value={selectedPrice}
           onChange={handlePriceChange}
           options={priceOptions}
         />
-      </div>
+      </Field>
 
-      <div>
+      <Field>
+        <Label>Property Type</Label>
         <StyledDropdown
           label={"Property Type"}
           value={selectedPropertyType}
           onChange={handlePropertyTypeChange}
           options={propertyTypeOptions}
         />
-      </div>
+      </Field>
 
-      <div>
+      <Field>
         <Button onClick={handleSearch}>Search</Button>
-      </div>
+      </Field>
     </Section>
   );
 };

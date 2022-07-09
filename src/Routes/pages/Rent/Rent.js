@@ -16,7 +16,7 @@ const Rent = () => {
     location: searchParams.get("location"),
     when: searchParams.get("when"),
     price: searchParams.get("price"),
-    propertyType: searchParams.get("propertyType"),
+    property: searchParams.get("property"),
   };
 
   const data = fetchData(filters);

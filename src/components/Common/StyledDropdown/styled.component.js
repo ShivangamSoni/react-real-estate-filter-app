@@ -1,20 +1,6 @@
 import styled from "styled-components";
 import { buttonLinkReset } from "../../../styles/common.component";
 
-export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto;
-  row-gap: 5px;
-  width: 100%;
-`;
-
-export const Label = styled.span`
-  font-size: 0.9rem;
-  color: var(--gray);
-  text-shadow: 0 0 0 var(--gray), 0 0 0 var(--gray);
-`;
-
 export const Select = styled.div`
   display: grid;
   position: relative;
