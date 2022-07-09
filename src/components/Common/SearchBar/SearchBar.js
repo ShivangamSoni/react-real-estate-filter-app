@@ -9,7 +9,7 @@ import { Form, Search } from "./styled.component";
 import StyledInput from "../StyledInput/StyledInput";
 
 const SearchBar = () => {
-  const [_, setSearchParams] = useSearchParams();
+  const setSearchParams = useSearchParams()[1];
   const [search, setSearch] = useState("");
 
   const handleChange = (e) => setSearch(e.target.value);

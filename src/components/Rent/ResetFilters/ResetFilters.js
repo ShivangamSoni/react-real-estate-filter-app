@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Button, Section } from "./styled.component";
 
 const ResetFilters = () => {
-  const [_, setSearchParams] = useSearchParams();
+  const setSearchParams = useSearchParams()[1];
   const handleReset = () => setSearchParams();
 
   return (

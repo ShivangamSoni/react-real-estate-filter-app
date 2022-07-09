@@ -10,7 +10,7 @@ import { fetchData } from "../../../Data/utils";
 import ResetFilters from "../../../components/Rent/ResetFilters/ResetFilters";
 
 const Rent = () => {
-  const [searchParams, _] = useSearchParams();
+  const searchParams = useSearchParams()[0];
 
   const filters = {
     name: searchParams.get("name"),
