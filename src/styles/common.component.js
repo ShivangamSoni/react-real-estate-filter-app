@@ -12,6 +12,9 @@ export const buttonLinkReset = css`
   outline: none;
   cursor: pointer;
 
+  /* inline-block is needed otherwise Button Styling for {a} tag doesn't work for Chromium Based Browsers  */
+  display: inline-block;
+
   font-size: 1rem;
   text-align: center;
 `;
