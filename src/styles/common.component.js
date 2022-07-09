@@ -13,6 +13,7 @@ export const buttonLinkReset = css`
   cursor: pointer;
 
   font-size: 1rem;
+  text-align: center;
 `;
 
 export const linkStyles = css`
