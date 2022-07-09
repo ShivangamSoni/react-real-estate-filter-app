@@ -6,7 +6,7 @@ import { Options, Select, Selected } from "./styled.component";
 
 import Option from "./Option/Option";
 
-const StyledDropdown = ({ label, value, onChange, options }) => {
+const StyledDropdown = ({ value, onChange, options }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

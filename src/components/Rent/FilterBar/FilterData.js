@@ -26,28 +26,29 @@ export const propertyTypeOptions = [
 export const correctFilters = (filters) => {
   const { location, price, property } = filters;
 
+  console.log(filters);
+
   if (
     location &&
-    locationOptions.filter((location) => location.value === location).length ===
-      0
+    locationOptions.filter(({ value }) => value === location).length === 0
   ) {
     filters.location = "";
   }
 
   if (
     price &&
-    priceOptions.filter((price) => price.value === price).length === 0
+    priceOptions.filter(({ value }) => value === price).length === 0
   ) {
     filters.price = "";
   }
 
   if (
     property &&
-    propertyTypeOptions.filter((property) => property.value === property)
-      .length === 0
+    propertyTypeOptions.filter(({ value }) => value === property).length === 0
   ) {
     filters.property = "";
   }
 
+  console.log("updated:", filters);
   return filters;
 };

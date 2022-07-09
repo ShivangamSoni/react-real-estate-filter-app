@@ -34,6 +34,7 @@ const commonAfterStyles = css`
     #9b59b6
   );
   background-clip: text;
+  -webkit-background-clip: text;
   background-size: 400%;
   text-shadow: 1px 1px 2px #ffffff40;
   text-transform: uppercase;

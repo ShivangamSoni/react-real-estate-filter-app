@@ -24,7 +24,7 @@ const FilterBar = () => {
     location: searchParams.get("location"),
     when: searchParams.get("when"),
     price: searchParams.get("price"),
-    property: searchParams.get("propertyType"),
+    property: searchParams.get("property"),
   });
 
   const [selectedLocation, setSelectedLocation] = useState(
