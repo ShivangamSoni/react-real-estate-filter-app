@@ -44,7 +44,7 @@ export const Section = styled.section`
       display: grid;
       place-items: center;
 
-      flex: 1;
+      flex: 0.5;
 
       @media screen and (${responsiveWidth}) {
         flex: unset;

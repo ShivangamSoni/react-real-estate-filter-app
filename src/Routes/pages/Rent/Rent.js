@@ -25,7 +25,7 @@ const Rent = () => {
     <PageContainer>
       <Head />
       <FilterBar />
-      <PropertyListing data={data} />
+      {data.length !== 0 ? <PropertyListing data={data} /> : "No Data"}
     </PageContainer>
   );
 };
