@@ -100,4 +100,4 @@ export const titleUnderline = css`
   }
 `;
 
-export const responsiveWidth = "max-width: 800px";
+export const responsiveWidth = "max-width: 850px";

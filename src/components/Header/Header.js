@@ -12,6 +12,8 @@ import {
   NavToggle,
 } from "./styled.component";
 
+import Drawer from "./Drawer/Drawer";
+
 const SITE_LINKS = [
   {
     id: 1,
@@ -31,12 +33,34 @@ const SITE_LINKS = [
   {
     id: 4,
     label: "Manage Property",
-    to: "/manage-property",
+    links: [
+      {
+        id: 1,
+        label: "Houses",
+        to: "/manage/houses",
+      },
+      {
+        id: 2,
+        label: "Farm Houses",
+        to: "/manage/farm-houses",
+      },
+    ],
   },
   {
     id: 5,
     label: "Resources",
-    to: "/resources",
+    links: [
+      {
+        id: 1,
+        label: "FAQ",
+        to: "/resources/faq",
+      },
+      {
+        id: 2,
+        label: "Contact",
+        to: "/contact",
+      },
+    ],
   },
 ];
 
@@ -84,9 +108,13 @@ const Header = () => {
 
       <NavBar className={`${visible && "visible"}`}>
         <ul>
-          {SITE_LINKS.map(({ id, label, to }) => (
+          {SITE_LINKS.map(({ id, label, to, links }) => (
             <li key={id}>
-              <NavLink href={to}>{label}</NavLink>
+              {to ? (
+                <NavLink href={to}>{label}</NavLink>
+              ) : (
+                <Drawer label={label} links={links} />
+              )}
             </li>
           ))}
         </ul>

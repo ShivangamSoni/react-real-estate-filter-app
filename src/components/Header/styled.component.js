@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   button,
   buttonLinkReset,
@@ -93,7 +93,7 @@ export const NavToggle = styled.button`
   }
 `;
 
-export const NavLink = styled.a`
+export const navLinkCommon = css`
   ${linkStyles}
 
   padding: 0.5em;
@@ -129,6 +129,10 @@ export const NavLink = styled.a`
       background-position: bottom;
     }
   }
+`;
+
+export const NavLink = styled.a`
+  ${navLinkCommon}
 `;
 
 export const ButtonLink = styled.a`
