@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { button, titleUnderline } from "../../../styles/common.component";
+import { button } from "../../../styles/common.component";
 
 export const Section = styled.section`
   display: grid;
