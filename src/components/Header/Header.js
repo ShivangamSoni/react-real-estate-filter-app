@@ -111,7 +111,7 @@ const Header = () => {
           {SITE_LINKS.map(({ id, label, to, links }) => (
             <li key={id}>
               {to ? (
-                <NavLink href={to}>{label}</NavLink>
+                <NavLink to={to}>{label}</NavLink>
               ) : (
                 <Drawer label={label} links={links} />
               )}
@@ -122,7 +122,7 @@ const Header = () => {
         <ul>
           {USER_ACTIONS.map(({ id, label, to, variant }) => (
             <li key={id}>
-              <ButtonLink href={to} variant={variant}>
+              <ButtonLink to={to} variant={variant}>
                 {label}
               </ButtonLink>
             </li>

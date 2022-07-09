@@ -6,6 +6,8 @@ import {
   responsiveWidth,
 } from "../../styles/common.component";
 
+import { NavLink as RouterNavLink } from "react-router-dom";
+
 export const Container = styled.header`
   background-color: var(--light);
   padding: 30px 50px;
@@ -131,10 +133,10 @@ export const navLinkCommon = css`
   }
 `;
 
-export const NavLink = styled.a`
+export const NavLink = styled(RouterNavLink)`
   ${navLinkCommon}
 `;
 
-export const ButtonLink = styled.a`
+export const ButtonLink = styled(RouterNavLink)`
   ${button}
 `;

@@ -33,7 +33,7 @@ const Drawer = ({ label, links }) => {
       <ul className={`subNav ${open && "visible"}`}>
         {links.map(({ id, to, label }) => (
           <li key={id}>
-            <NavLink href={to}>{label}</NavLink>
+            <NavLink to={to}>{label}</NavLink>
           </li>
         ))}
       </ul>
