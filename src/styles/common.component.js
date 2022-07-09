@@ -99,3 +99,5 @@ export const titleUnderline = css`
     background-image: linear-gradient(to right, var(--primary), transparent);
   }
 `;
+
+export const responsiveWidth = "max-width: 800px";
