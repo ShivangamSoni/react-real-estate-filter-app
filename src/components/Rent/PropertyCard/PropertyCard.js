@@ -16,12 +16,7 @@ import {
   Price,
   Title,
 } from "./styled.component";
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  maximumFractionDigits: 0,
-});
+import currencyFormatter from "../../../utils/currencyFormatter";
 
 const PropertyCard = ({
   title,
