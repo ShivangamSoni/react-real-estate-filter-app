@@ -7,6 +7,7 @@ import FilterBar from "../../../components/Rent/FilterBar/FilterBar";
 import PropertyListing from "../../../components/Rent/PropertyListing/PropertyListing";
 
 import { fetchData } from "../../../Data/utils";
+import ResetFilters from "../../../components/Rent/ResetFilters/ResetFilters";
 
 const Rent = () => {
   const [searchParams, _] = useSearchParams();
@@ -25,7 +26,7 @@ const Rent = () => {
     <PageContainer>
       <Head />
       <FilterBar />
-      {data.length !== 0 ? <PropertyListing data={data} /> : "No Data"}
+      {data.length !== 0 ? <PropertyListing data={data} /> : <ResetFilters />}
     </PageContainer>
   );
 };
