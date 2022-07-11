@@ -26,8 +26,6 @@ export const propertyTypeOptions = [
 export const correctFilters = (filters) => {
   const { location, price, property } = filters;
 
-  console.log(filters);
-
   if (
     location &&
     locationOptions.filter(({ value }) => value === location).length === 0
@@ -49,6 +47,5 @@ export const correctFilters = (filters) => {
     filters.property = "";
   }
 
-  console.log("updated:", filters);
   return filters;
 };

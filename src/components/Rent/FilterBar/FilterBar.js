@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useSearchParams } from "react-router-dom";
 
@@ -20,21 +20,24 @@ import {
 const FilterBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  let filters = correctFilters({
-    location: searchParams.get("location"),
-    when: searchParams.get("when"),
-    price: searchParams.get("price"),
-    property: searchParams.get("property"),
-  });
-
-  const [selectedLocation, setSelectedLocation] = useState(
-    filters["location"] || "",
-  );
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedWhen, setSelectedWhen] = useState("");
-  const [selectedPrice, setSelectedPrice] = useState(filters["price"] || "");
-  const [selectedPropertyType, setSelectedPropertyType] = useState(
-    filters["property"] || "",
-  );
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedPropertyType, setSelectedPropertyType] = useState("");
+
+  useEffect(() => {
+    const filters = correctFilters({
+      location: searchParams.get("location"),
+      when: searchParams.get("when"),
+      price: searchParams.get("price"),
+      property: searchParams.get("property"),
+    });
+
+    setSelectedLocation(filters["location"] || "");
+    setSelectedWhen("");
+    setSelectedPrice(filters["price"] || "");
+    setSelectedPropertyType(filters["property"] || "");
+  }, [searchParams]);
 
   const handleLocationChange = (idx) => {
     setSelectedLocation(locationOptions[idx].value);
